@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming Webcam</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+</head>
+<body>
+    <h2>Live Streaming</h2>
+    <img id="videoStream" width="640" height="480">
+
+    <script>
+        var socket = io();
+        socket.on('video_frame', function(data) {
+            document.getElementById('videoStream').src = 'data:image/jpeg;base64,' + data.image;
+        });
+    </script>
+</body>
+</html>
